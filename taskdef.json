@@ -1,0 +1,66 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "skills-app",
+      "image": "<IMAGE1_NAME>",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "healthCheck": {
+        "command": [
+          "/bin/sh",
+          "-c",
+          "curl -f http://localhost:8080/api/health || exit 1"
+        ],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3
+      },
+      "systemControls": []
+    }
+  ],
+  "family": "skills-task-def",
+  "executionRoleArn": "arn:aws:iam::<<AWS_ID>>:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.24"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+    },
+    {
+      "name": "ecs.capability.container-health-check"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": ["EC2", "FARGATE"],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "registeredAt": "2024-08-30T13:56:40.838Z",
+  "registeredBy": "arn:aws:sts::<<AWS_ID>>:assumed-role/AWSCodePipelineServiceRole-ap-northeast-2-skills-backend-pipeli/1725026200431"
+}
